@@ -1,0 +1,27 @@
+---
+title: "Test Title"
+author: "Luke Catalano"
+format: html
+editor: visual
+---
+
+```{r}
+library(glmnetUtils)
+
+x <- rnorm(1000, 0, 1)
+
+hist(x, probability = TRUE, main='Normal Distribution Histogram')
+abline(v=0, col='lightblue',lty=2,lwd=2)
+```
+
+```{r}
+library(quantmod)
+
+start <- '2025-01-01'
+end <- Sys.Date()
+
+getSymbols("^GSPC",from=start, to=end)
+
+plot(GSPC$GSPC.Adjusted, main='S&P 500 Index')
+abline(v = c("2025-03-16"), lty=2)
+```
