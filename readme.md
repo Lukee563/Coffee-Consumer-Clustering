@@ -24,6 +24,7 @@ for(i in n_vals){
 } #O(n^2) complexity
 ```
 
+![](readme.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
 ## Description
 
