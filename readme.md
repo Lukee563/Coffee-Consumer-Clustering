@@ -1,9 +1,5 @@
-# First Quarto Markdown
-Luke Catalano
-
 # STAT-155 Project Description
-
-## Luke Catalano
+Luke Catalano
 
 -   This is a project description, on a github landing page, from a
     readme.md file.
