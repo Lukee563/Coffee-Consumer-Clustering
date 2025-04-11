@@ -1,5 +1,9 @@
-# STAT-155 Project Description
-Luke Catalano
+---
+title: "STAT-155 Project Description"
+author: "Luke Catalano"
+format: md
+editor: visual
+---
 
 -   Current working with a Coffee Consumer Survey Data Set
 
