@@ -5,6 +5,7 @@ editor: visual
 ---
 
 ```{r}
+rm(list=ls())
 library(tidyverse)
 library(janitor)
 library(here)
@@ -15,14 +16,14 @@ working_dir <- here::here("data", "2024", "2024-05-14")
 
 url <- "https://bit.ly/gacttCSV"
 
-coffee_survey_raw <- readr::read_csv(url)
+raw <- readr::read_csv(url)
 
 # Grab the raw questions for the dictionary.
-coffee_survey_raw |> 
+raw |> 
   colnames() |> 
   cat(sep = "\n")
 
-coffee_survey <- coffee_survey_raw |> 
+coffee_survey <- raw |> 
   janitor::clean_names() |> 
   # Get rid of one-hot encoding; users can do that if they'd like. Also,
   # "flavorings" columns are empty.

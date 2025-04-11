@@ -1,6 +1,7 @@
-# STAT-155 Project Description
-Luke Catalano
+# readme
 
--   Current working with a Coffee Consumer Survey Data Set
 
--   **To-do**; Narrative, Data Summary, Data Dictionary,
+Using data from a 2023 survey of “Great American Coffee Taste Test”
+viewers, I will be exploring consumer trends of American coffee
+enthusiasts, primarily through spending demographics and coffee
+preferences.
