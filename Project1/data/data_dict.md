@@ -1,8 +1,5 @@
----
-title: "data_dictionary"
-format: md
-editor: visual
----
+# data_dictionary
+
 
 # Data Dictionary
 
@@ -26,9 +23,11 @@ strength: How strong do you like your coffee?
 
 expertise: how would you rate your own coffee expertise?
 
-total_spend: In total, much money do you typically spend on coffee in a month?
+total_spend: In total, much money do you typically spend on coffee in a
+month?
 
-value_cafe: Do you feel like you’re getting good value for your money when you buy coffee at a cafe?
+value_cafe: Do you feel like you’re getting good value for your money
+when you buy coffee at a cafe?
 
 ## Demographic Variables
 
