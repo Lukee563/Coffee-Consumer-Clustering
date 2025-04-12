@@ -6,11 +6,12 @@
 Using data from a 2023 survey of “Great American Coffee Taste Test”
 viewers, I will be exploring consumer trends of American coffee
 enthusiasts, primarily through spending demographics and coffee
-preferences. In this demographic, do coffee drinkers tend to prefer
-certain chains over others? Do older coffee enthusiasts tend to spend
-more money on at-home equipment? What age group prefers a cappuccino the
-most? These are the types of questions I believe I can explore using
-this dataset.
+preferences. I’ve worked as a barista at both Starbucks, and on the UC
+Santa Cruz Campus, and have a general interest in the subject, as coffee
+In this demographic, do coffee drinkers tend to prefer certain chains
+over others? Do older coffee enthusiasts tend to spend more money on
+at-home equipment? What age group prefers a cappuccino the most? These
+are the types of questions I believe I can explore using this dataset.
 
 ## Data
 
