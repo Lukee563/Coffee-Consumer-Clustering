@@ -1,10 +1,8 @@
 ---
-title: "readme"
+title: "Data Dictionary"
 format: md
 editor: visual
 ---
-
-# Data Dictionary
 
 ## Important Survey Quetions
 
