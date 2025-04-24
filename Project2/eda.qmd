@@ -3,3 +3,34 @@ title: "Exploratory Data Analysis"
 format: md
 editor: visual
 ---
+
+## Research Question:
+
+-   Can coffee consumers be grouped into distinct customer-classes based on self-reported data? What customer-class demographic spends the most at corporate coffee chains? What characteristics seperate consumers from other classes of consumers?
+
+## Analysis Objective:
+
+-   Using CBA - Clustering for Business Analytics by Christian Buchta, I am looking to identify distinct "customer-classes" by analyzing individual, self reported data on their coffee drinking habits (location, preferred roast, preferred brand, home coffee spending) and demographic characteristics such as their age, gender, race, educational background, and number of children. Identifying prominent characteristics that lead to vast differences in consumer spending can be beneficial to any corporation looking to target the right kind of consumers through advertising.
+
+## Exploratory Data Analysis
+
+### Download Data + Data Cleaning
+
+```{r, echo=TRUE, results='hide'}
+source("functions/preprocess.R")
+```
+
+### Exploring Important Features
+
+```{r}
+# Cleaning up the age variable, using the gsub function to replace / remove uneeded words for the visual. 
+coffee_survey$age_clean <- tolower(coffee_survey$age) #Converts age to lowercase for string handling
+coffee_survey$age_clean <- gsub("years old", "", coffee_survey$age_clean)
+coffee_survey$age_clean <- gsub("to", "-", coffee_survey$age_clean)
+
+barplot(table(coffee_survey$age_clean), #Table provides named list, containing the counts of each age group
+        col = "skyblue", 
+        main = "Age Groups Distribution", 
+        ylab = "Count",
+        xlab = 'Age Groups')
+```
