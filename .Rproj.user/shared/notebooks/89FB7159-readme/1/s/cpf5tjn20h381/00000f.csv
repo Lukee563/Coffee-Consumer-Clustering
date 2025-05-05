@@ -1,0 +1,71 @@
+"0","library(tibble)"
+"0","glimpse(coffee_survey)"
+"1","Rows: 4,042"
+"1",""
+"1","
+"
+"1","Columns: 57"
+"1",""
+"1","
+"
+"1","$ submission_id                [3m[38;5;246m<chr>[39m[23m ""gMR29l"", ""BkP…
+$ age                          [3m[38;5;246m<chr>[39m[23m ""18-24 years o…
+$ cups                         [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ where_drink                  [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ brew                         [3m[38;5;246m<chr>[39m[23m [31mNA[39m, ""Pod/capsu…
+$ brew_other                   [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ purchase                     [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ purchase_other               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ favorite                     [3m[38;5;246m<chr>[39m[23m ""Regular drip …
+$ favorite_specify             [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ additions                    [3m[38;5;246m<chr>[39m[23m ""No - just bla…
+$ additions_other              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ dairy                        [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ sweetener                    [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ style                        [3m[38;5;246m<chr>[39m[23m ""Complex"", ""Li…
+$ strength                     [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ roast_level                  [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ caffeine                     [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ expertise                    [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_a_bitterness          [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_a_acidity             [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_a_personal_preference [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_a_notes               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_b_bitterness          [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_b_acidity             [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_b_personal_preference [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_b_notes               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_c_bitterness          [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_c_acidity             [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_c_personal_preference [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_c_notes               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_d_bitterness          [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_d_acidity             [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_d_personal_preference [3m[38;5;246m<dbl>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ coffee_d_notes               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ prefer_abc                   [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ prefer_ad                    [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ prefer_overall               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ wfh                          [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ total_spend                  [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ why_drink                    [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ why_drink_other              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ taste                        [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ know_source                  [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ most_paid                    [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ most_willing                 [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ value_cafe                   [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ spent_equipment              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ value_equipment              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ gender                       [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ gender_specify               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ education_level              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ ethnicity_race               [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ ethnicity_race_specify       [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ employment_status            [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ number_children              [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…
+$ political_affiliation        [3m[38;5;246m<chr>[39m[23m [31mNA[39m, [31mNA[39m, [31mNA[39m, [31mNA[39m…"
+"1",""
+"1","
+"
+"0","##Lots of NA's in the first few rows, but out of the 4042 rows I should have enough valid data to work with."
