@@ -125,3 +125,7 @@ top_drinks %>%
 ```
 
 In many instances, women favor Lattes while men favor pourovers. Older women still favor regular drip coffee or pourovers, however from ages 18-54 we see a switch towards lattes. Men in every instance except below 18 self report that they favor pourovers or regular drip coffee.
+
+```{r}
+sum(is.na(coffee_survey)) / (count(coffee_survey)*ncol(coffee_survey))
+```
