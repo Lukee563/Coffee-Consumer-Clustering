@@ -1,0 +1,18 @@
+---
+title: "Exploratory Data Analysis"
+format: md
+editor: visual
+prefer-html: true
+---
+
+## Preprocess & Load Data:
+
+```{r, echo=TRUE, results='hide'}
+source("functions/preprocess.R")
+```
+
+## Cluster Analysis
+
+```{r}
+
+```
