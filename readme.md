@@ -4,4 +4,5 @@ Luke Catalano
 -   Current working with a Coffee Consumer Survey Data Set
 
 -   **Finished**; Project 1 - Narrative, Data Summary, Data Dictionary,
--   _In Progress_; Project 2 - Exploratory Data Analysis
+-   **Finished**; Project 2 - Exploratory Data Analysis
+-   _In Progress_; Project 3 - Cluster Analysis Model
