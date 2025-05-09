@@ -203,7 +203,7 @@ library(cluster)
 set.seed(2)
 
 #Columns selected for clustering (categorical only)
-rock_vars <- c(
+vars <- c(
   "where_drink", #Where do you drink coffee?
   "number_children", #How many children do you have?
   "brew", #Favorite brew?
@@ -230,22 +230,22 @@ rock_vars <- c(
 )
 
 #Subset and clean data
-coffee_rock <- coffee_survey[, rock_vars]
-coffee_rock_clean <- na.omit(coffee_rock)
+coffee <- coffee_survey[, vars]
+coffee_clean <- na.omit(coffee)
 
 #Ensure all variables are factors
-coffee_rock_clean[] <- lapply(coffee_rock_clean, function(x) {
+coffee_clean[] <- lapply(coffee_clean, function(x) {
   if (is.character(x)) as.factor(x) else x
 })
 
 #Compute Gower distance
-gower_dist <- daisy(coffee_rock_clean, metric = "gower")
+gower_dist <- daisy(coffee_clean, metric = "gower")
 gower_matrix <- as.matrix(gower_dist)
 
 #Use PAM for Gower
 pam_model <- pam(gower_dist, k = 3, diss = TRUE)
-coffee_rock_clean$cluster <- pam_model$clustering
-table(coffee_rock_clean$cluster)
+coffee_clean$cluster <- pam_model$clustering
+table(coffee_clean$cluster)
 ```
 
 
@@ -254,10 +254,10 @@ table(coffee_rock_clean$cluster)
 
 ``` r
 #Add cluster assignments
-coffee_rock_clean$cluster <- factor(pam_model$clustering)
+coffee_clean$cluster <- factor(pam_model$clustering)
 
 #One-hot encode for PCA
-coffee_onehot <- model.matrix(~ . - 1, data = coffee_rock_clean[, -ncol(coffee_rock_clean)])  # Exclude cluster column
+coffee_onehot <- model.matrix(~ . - 1, data = coffee_clean[, -ncol(coffee_clean)])  # Exclude cluster column
 
 #Run PCA to visualize clusters in 2 dimensions
 pca_result <- prcomp(coffee_onehot, center = TRUE, scale. = TRUE)
@@ -266,7 +266,7 @@ pca_result <- prcomp(coffee_onehot, center = TRUE, scale. = TRUE)
 pca_df <- data.frame(
   PC1 = pca_result$x[, 1],
   PC2 = pca_result$x[, 2],
-  Cluster = coffee_rock_clean$cluster
+  Cluster = coffee_clean$cluster
 )
 
 #Plot
@@ -283,7 +283,7 @@ ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
 # Results
 
 -   From initial observations, it appears that factoring/one-hot
-    encoding survey data does not provide enohgh distance between each
+    encoding survey data does not provide enough distance between each
     observation to distinctively separate them into unique, well defined
     clusters. After attempting to use ROCK clustering from the CBA
     package, and obtaining similar results, I switched to Grower/PAM
