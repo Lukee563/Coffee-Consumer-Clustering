@@ -13,7 +13,7 @@ prefer-html: true
 
 -   Clustering provides a way to group individual observations into natural "clusters" through distances in their observable features. These differences between features can be defined in many ways, however for the main analysis we will be using Grower / PAM clustering to identify differences between observations. For example, if two individuals report that they prefer dark roast, they will have a relatively short distance and could potentially end up in the same cluster, provided other survey responses are similar. This is done for every observation, and all of our chosen covariates. Individuals with similar coffee preferences and habits will be clustered together into one of 3 clusters, hopefully providing us with 3 unique/distinct customer groups.
 
-## Rock Clustering Analysis
+## Grower Clustering Analysis
 
 ```{r}
 #Preprocess & Load Data:
@@ -91,6 +91,51 @@ ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
        x = "Principal Component 1", y = "Principal Component 2") +
   theme_minimal() +
   scale_color_brewer(palette = "Set1")
+```
+
+## Further Analysis
+
+We know that PCA reduces the dimensions of our data to display clusters neatly in R2 space. Individual Observations are then colored by cluster, and groupings can be established based on clusters of observations in R2 space. It is likely, however, that we are not seeing clear, well defined clusters due to this dimension reduction. I will resort to alternative methods of clustering.
+
+```{r}
+# Build logical matrix from clean data
+coffee_bool <- data.frame(
+  children = coffee_clean$number_children,
+  gender = coffee_clean$gender,
+  additions = coffee_clean$additions,
+  wfh = coffee_clean$wfh,
+  cups = coffee_clean$cups
+)
+
+# Conversion function: clean and binarize columns
+conversion <- function(df, column, logic, val){
+  if (logic == 'Equal') {
+    df[[column]] <- ifelse(df[[column]] == val, 0, 1)
+  }
+  df[[column]] <- as.numeric(df[[column]])
+  cat("Success, the proportion of True is:", mean(df[[column]]), "\n")
+  return(df)
+}
+
+# Apply binary transformations
+coffee_bool <- conversion(coffee_bool, 'additions', 'Equal', 'No - just black')
+coffee_bool <- conversion(coffee_bool, 'children', 'Equal', 'None')
+coffee_bool <- conversion(coffee_bool, 'gender', 'Equal', 'Male')
+coffee_bool <- conversion(coffee_bool, 'wfh', 'Equal', 'I primarily work from home')
+
+# Process cups: convert to numeric before comparison
+coffee_bool$cups[coffee_bool$cups == 'More than 4'] <- 5
+coffee_bool$cups[coffee_bool$cups == 'Less than 1'] <- 0
+coffee_bool$cups <- as.numeric(coffee_bool$cups)
+coffee_bool$cups <- ifelse(coffee_bool$cups >= 2, 1, 0)
+
+# logic
+coffee_logical <- coffee_bool == 1
+
+# Run Proximus
+model <- proximus(coffee_logical, max.radius = 2, min.size = 1, min.retry = 10, max.iter = 16, debug = FALSE)
+
+summary(model)
 ```
 
 # Results

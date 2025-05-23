@@ -56,6 +56,24 @@ source("functions/preprocess.R")
 
     here() starts at /Users/luke/Documents/GitHub/Stat155
 
+    Loading required package: grid
+
+    Loading required package: proxy
+
+
+    Attaching package: 'proxy'
+
+
+    The following objects are masked from 'package:stats':
+
+        as.dist, dist
+
+
+    The following object is masked from 'package:base':
+
+        as.matrix
+
+
     Rows: 4042 Columns: 113
     ── Column specification ────────────────────────────────────────────────────────
     Delimiter: ","
@@ -182,22 +200,6 @@ source("functions/preprocess.R")
 
 ``` r
 library(cba)
-```
-
-    Loading required package: grid
-    Loading required package: proxy
-
-    Attaching package: 'proxy'
-
-    The following objects are masked from 'package:stats':
-
-        as.dist, dist
-
-    The following object is masked from 'package:base':
-
-        as.matrix
-
-``` r
 library(dplyr)
 library(cluster)
 set.seed(2)
@@ -278,7 +280,7 @@ ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
   scale_color_brewer(palette = "Set1")
 ```
 
-![](Cluster.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png)
+![](project4_simulation_catalano_luke.markdown_strict_files/figure-markdown_strict/unnamed-chunk-1-1.png)
 
 ## Further Analysis
 
