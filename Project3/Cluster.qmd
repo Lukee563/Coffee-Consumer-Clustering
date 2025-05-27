@@ -136,6 +136,9 @@ coffee_logical <- coffee_bool == 1
 model <- proximus(coffee_logical, max.radius = 2, min.size = 1, min.retry = 10, max.iter = 16, debug = FALSE)
 
 summary(model)
+
+
+
 ```
 
 # Results

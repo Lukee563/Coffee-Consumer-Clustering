@@ -13,11 +13,12 @@ In real-world settings, two majors issues with business data is sample size and 
 
 # Data
 
--   Review how new random data should be generated
+-   I will be generating new data based on the historic distribution of each column, with a normalized error, for each instance of a factor-level simulation. I will end up with 90 randomly generated, similar data to the current survey results, each with different amount of observations or sparistiy depending on the factor-level specification.
 
 # Estimates
 
--   Review what the output of the experiment should be (# of clusters? )
+-   Jaccard similarity of the total approximation is provided for each proximus output, and I will be comparing the mean and standard deviation of the Jaccard similarity for each factor-level.
+-   The Jaccard similarity of the total approximation is defined as the sum of a procedure done to each column pair in a matrix. The procedure is as follows: The size of the intersection of the columns divided by the size of the union of the columns, ranging from 0 (no similarity) to 1 (identical columns).
 
 # Methods
 
@@ -25,7 +26,7 @@ I will be evaluating the performance of the Proximus algorithm from the Clusteri
 
 # Performance Criteria
 
--   Review what the performance output of the experiment should be.
+-   The algorithm will produce the Jaccard similarity of the total approximation for each of the 90 instances of a simulation. A value of 1 indicates that the 0's and 1's of the original logical matrix were perfectly preserved (i.e. unchanged from the original). When parameters that affect algorithmic performance are changed, I am expecting to see shifts in this parameter as the algorithm begins to perform worse.
 
 # Simulation Plan
 
