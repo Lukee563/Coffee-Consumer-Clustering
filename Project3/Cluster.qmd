@@ -83,7 +83,6 @@ pca_df <- data.frame(
   PC2 = pca_result$x[, 2],
   Cluster = coffee_clean$cluster
 )
-
 #Plot
 ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
   geom_point(alpha = 0.6, size = 2) +
@@ -136,9 +135,6 @@ coffee_logical <- coffee_bool == 1
 model <- proximus(coffee_logical, max.radius = 2, min.size = 1, min.retry = 10, max.iter = 16, debug = FALSE)
 
 summary(model)
-
-
-
 ```
 
 # Results
