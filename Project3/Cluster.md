@@ -39,7 +39,7 @@ source("functions/preprocess.R")
     ✔ dplyr     1.1.4     ✔ readr     2.1.5
     ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-    ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+    ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
     ✔ purrr     1.0.2     
     ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ✖ dplyr::filter() masks stats::filter()
@@ -54,7 +54,7 @@ source("functions/preprocess.R")
         chisq.test, fisher.test
 
 
-    here() starts at /Users/luke/Documents/GitHub/Stat155
+    here() starts at C:/Users/lukec/OneDrive/Documents/GitHub/Stat155
 
     Rows: 4042 Columns: 113
     ── Column specification ────────────────────────────────────────────────────────
@@ -268,7 +268,6 @@ pca_df <- data.frame(
   PC2 = pca_result$x[, 2],
   Cluster = coffee_clean$cluster
 )
-
 #Plot
 ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
   geom_point(alpha = 0.6, size = 2) +
@@ -290,91 +289,29 @@ clusters due to this dimension reduction. I will resort to alternative
 methods of clustering.
 
 ``` r
-# Build logical matrix from clean data
-coffee_bool <- data.frame(
-  children = coffee_clean$number_children,
-  gender = coffee_clean$gender,
-  additions = coffee_clean$additions,
-  wfh = coffee_clean$wfh,
-  cups = coffee_clean$cups
-)
+library(dplyr)
+library(ggplot2)
 
-# Conversion function: clean and binarize columns
-conversion <- function(df, column, logic, val){
-  if (logic == 'Equal') {
-    df[[column]] <- ifelse(df[[column]] == val, 0, 1)
-  }
-  df[[column]] <- as.numeric(df[[column]])
-  cat("Success, the proportion of True is:", mean(df[[column]]), "\n")
-  return(df)
-}
+# Normalize within each cluster
+prop_df <- coffee_clean %>%
+  group_by(cluster, most_paid) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(cluster) %>%
+  mutate(prop = n / sum(n))
 
-# Apply binary transformations
-coffee_bool <- conversion(coffee_bool, 'additions', 'Equal', 'No - just black')
+# Plot
+ggplot(prop_df, aes(x = most_paid, y = prop, fill = as.factor(cluster))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Most Paid Distribution Within Each Cluster",
+    x = "Most Paid",
+    y = "Proportion (Within Cluster)",
+    fill = "Cluster"
+  ) +
+  theme_minimal()
 ```
 
-    Success, the proportion of True is: 0.4343434 
-
-``` r
-coffee_bool <- conversion(coffee_bool, 'children', 'Equal', 'None')
-```
-
-    Success, the proportion of True is: 0.2511785 
-
-``` r
-coffee_bool <- conversion(coffee_bool, 'gender', 'Equal', 'Male')
-```
-
-    Success, the proportion of True is: 0.2643098 
-
-``` r
-coffee_bool <- conversion(coffee_bool, 'wfh', 'Equal', 'I primarily work from home')
-```
-
-    Success, the proportion of True is: 0.5306397 
-
-``` r
-# Process cups: convert to numeric before comparison
-coffee_bool$cups[coffee_bool$cups == 'More than 4'] <- 5
-```
-
-    Warning in `[<-.factor`(`*tmp*`, coffee_bool$cups == "More than 4", value =
-    structure(c(2L, : invalid factor level, NA generated
-
-``` r
-coffee_bool$cups[coffee_bool$cups == 'Less than 1'] <- 0
-```
-
-    Warning in `[<-.factor`(`*tmp*`, coffee_bool$cups == "Less than 1", value =
-    structure(c(2L, : invalid factor level, NA generated
-
-``` r
-coffee_bool$cups <- as.numeric(coffee_bool$cups)
-coffee_bool$cups <- ifelse(coffee_bool$cups >= 2, 1, 0)
-
-# logic
-coffee_logical <- coffee_bool == 1
-
-# Run Proximus
-model <- proximus(coffee_logical, max.radius = 2, min.size = 1, min.retry = 10, max.iter = 16, debug = FALSE)
-
-summary(model)
-```
-
-    approximates 2970 x 5 matrix
-    total Error: 0.08 
-    total Fnorm: 34 
-    total  Jsim: 0.94 
-    total Valid: 7 
-    Pattern Summary:
-      Size Length Radius Error Fnorm Jsim Valid
-    1  830      2      2 0.000   0.0 1.00  TRUE
-    3  635      4      2 0.260  28.7 0.68  TRUE
-    5  492      1      2 0.000   0.0 1.00  TRUE
-    6  395      2      2 0.150  17.2 0.62  TRUE
-    4  353      1      2 0.024   6.5 0.88  TRUE
-    7  136      0      0 0.000   0.0 1.00  TRUE
-    2  129      3      2 0.039   5.0 0.94  TRUE
+![](Cluster.markdown_strict_files/figure-markdown_strict/unnamed-chunk-2-1.png)
 
 # Results
 
@@ -406,5 +343,3 @@ summary(model)
     alone cannot be used to make predictions on the behavior of other
     American coffee consumers due to the selection bias within our
     sample of these survey respondents.
-
-# 
