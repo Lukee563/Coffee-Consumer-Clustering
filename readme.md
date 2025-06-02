@@ -6,3 +6,4 @@ Luke Catalano
 -   **Finished**; Project 1 - Narrative, Data Summary, Data Dictionary,
 -   **Finished**; Project 2 - Exploratory Data Analysis
 -    **Finished**; Project 3 - Cluster Analysis Model
+-    **In Progress**; Project 4 - Monte Carlo Experiment
