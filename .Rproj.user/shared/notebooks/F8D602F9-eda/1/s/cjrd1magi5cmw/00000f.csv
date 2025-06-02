@@ -1,1 +1,0 @@
-"0","sum(is.na(coffee_survey)) / (count(coffee_survey)*ncol(coffee_survey))"
