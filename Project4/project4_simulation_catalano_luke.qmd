@@ -190,7 +190,6 @@ obs_levels <- c(500, 1500, 2970)
 sparse_levels <- c(1, 3, 6)
 
 # Sparsify function
-
 sparsify <- function(matrix, num_cols, target = 0.65) {
   cols <- sample(ncol(matrix), min(num_cols, ncol(matrix)))
   for (j in cols) {
@@ -227,6 +226,5 @@ for (obs in obs_levels) {
   }
 }
 
-# View or export the results table
 print(results)
 ```
