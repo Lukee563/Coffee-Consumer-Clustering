@@ -1,0 +1,4 @@
+"0","#Grouping By Age and Gender to see their favorite drinks "
+"0","top_drinks %>%"
+"0","  kable() %>%"
+"0","  kable_styling(bootstrap_options = ""striped"", full_width = F)"
