@@ -50,7 +50,7 @@ education_level: Education Level
 
 ## Data Downloading
 
-Downloads the dataset and cleans it (removes onehot encoding)
+Downloads the data set and cleans it (removes onehot encoding)
 
 ```{r}
 rm(list=ls())

@@ -97,44 +97,26 @@ ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
 We know that PCA reduces the dimensions of our data to display clusters neatly in R2 space. Individual Observations are then colored by cluster, and groupings can be established based on clusters of observations in R2 space. It is likely, however, that we are not seeing clear, well defined clusters due to this dimension reduction. I will resort to alternative methods of clustering.
 
 ```{r}
-# Build logical matrix from clean data
-coffee_bool <- data.frame(
-  children = coffee_clean$number_children,
-  gender = coffee_clean$gender,
-  additions = coffee_clean$additions,
-  wfh = coffee_clean$wfh,
-  cups = coffee_clean$cups
-)
+library(dplyr)
+library(ggplot2)
 
-# Conversion function: clean and binarize columns
-conversion <- function(df, column, logic, val){
-  if (logic == 'Equal') {
-    df[[column]] <- ifelse(df[[column]] == val, 0, 1)
-  }
-  df[[column]] <- as.numeric(df[[column]])
-  cat("Success, the proportion of True is:", mean(df[[column]]), "\n")
-  return(df)
-}
+# Normalize within each cluster
+prop_df <- coffee_clean %>%
+  group_by(cluster, most_paid) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  group_by(cluster) %>%
+  mutate(prop = n / sum(n))
 
-# Apply binary transformations
-coffee_bool <- conversion(coffee_bool, 'additions', 'Equal', 'No - just black')
-coffee_bool <- conversion(coffee_bool, 'children', 'Equal', 'None')
-coffee_bool <- conversion(coffee_bool, 'gender', 'Equal', 'Male')
-coffee_bool <- conversion(coffee_bool, 'wfh', 'Equal', 'I primarily work from home')
-
-# Process cups: convert to numeric before comparison
-coffee_bool$cups[coffee_bool$cups == 'More than 4'] <- 5
-coffee_bool$cups[coffee_bool$cups == 'Less than 1'] <- 0
-coffee_bool$cups <- as.numeric(coffee_bool$cups)
-coffee_bool$cups <- ifelse(coffee_bool$cups >= 2, 1, 0)
-
-# logic
-coffee_logical <- coffee_bool == 1
-
-# Run Proximus
-model <- proximus(coffee_logical, max.radius = 2, min.size = 1, min.retry = 10, max.iter = 16, debug = FALSE)
-
-summary(model)
+# Plot
+ggplot(prop_df, aes(x = most_paid, y = prop, fill = as.factor(cluster))) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Most Paid Distribution Within Each Cluster",
+    x = "Most Paid",
+    y = "Proportion (Within Cluster)",
+    fill = "Cluster"
+  ) +
+  theme_minimal()
 ```
 
 # Results
@@ -142,5 +124,3 @@ summary(model)
 -   From initial observations, it appears that factoring/one-hot encoding survey data does not provide enough distance between each observation to distinctively separate them into unique, well defined clusters. After attempting to use ROCK clustering from the CBA package, and obtaining similar results, I switched to Grower/PAM which handles one-hot encoded categorical data and obtained similar results. We can see that there is a very large amount of overlap between the 3 clusters, and through further parameter tuning / changing of the amount of clusters, I have been unable to identify well-defined, separate groupings based on this survey data. Outliers seem to be members of all 3 clusters, and there does not seem to be any real evidence that members of each cluster are truly different from one another based on the current observable characteristics / principal components created for the 2d visual plot.
 
 -   This likely occurs because members of the 2023 survey of “Great American Coffee Taste Test” viewers were all likely similar in many aspects, including observable aspects like coffee preferences and consumer habits. If the viewers are all very similar in their coffee preferences, and we force our clustering algorithm to sort them into clusters regardless, we end up with a cloud of multiple clusters, with no defined unique groupings. Even with further survey data, if the individuals of the survey are all closely similar to each other in their daily coffee consuming habits, we likely will not be able to create well defined clusters. It is obvious that this sample alone cannot be used to make predictions on the behavior of other American coffee consumers due to the selection bias within our sample of these survey respondents.
-
-# 
