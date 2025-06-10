@@ -12,7 +12,43 @@ All of the data comes from the following TidyTuesday publication: <https://githu
 
 I've worked as a barista at both Starbucks, and on the UC Santa Cruz Campus, and have a general interest in the subject, as coffee In this demographic, do coffee drinkers tend to prefer certain chains over others? Do older coffee enthusiasts tend to spend more money on at-home equipment? What age group prefers a cappuccino the most? These are the types of questions I believe I can explore using this dataset.
 
-## Data
+## Data:
+
+Using data from a 2023 survey of “Great American Coffee Taste Test” viewers, I will be exploring consumer trends of American coffee enthusiasts, primarily through spending demographics and coffee preferences.
+
+All of the data comes from the following TidyTuesday publication: <https://github.com/rfordatascience/tidytuesday/blob/main/data/2024/2024-05-14/readme.md>
+
+Some variables from this study that will be important for grouping consumers into customer-classes include:
+
+cups: How many cups of coffee do you typically drink per day?
+
+where_drink: Where do you typically drink coffee?
+
+brew: How do you brew coffee at home?
+
+purchase: On the go, where do you typically purchase coffee?
+
+favorite: What is your favorite coffee drink?
+
+additions: Do you usually add anything to your coffee?
+
+expertise: how would you rate your own coffee expertise?
+
+total_spend: In total, much money do you typically spend on coffee in a month?
+
+number_children: Number of Children
+
+employment_status: Employment Status
+
+gender: Gender
+
+age: Age
+
+ethnicity_race: Ethnicity/Race
+
+education_level: Education Level
+
+## Data Downloading
 
 Downloads the dataset and cleans it (removes onehot encoding)
 
